@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentManager
  * @author zhanglulu on 2020/1/14.
  * for DialogFragment 基类 的，封装一些通用的接口和方法
  */
-private const val TAG = "CommonDialogFragment"
+private const val TAG = "BaseDialogFragment"
 open class BaseDialogFragment : DialogFragment() {
     /**
      * 取消监听
