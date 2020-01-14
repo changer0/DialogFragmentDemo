@@ -15,14 +15,14 @@ import androidx.fragment.app.FragmentManager
 
 /**
  * @author zhanglulu on 2020/1/14.
- * for 通用 Dialog 的，封装一些通用的接口和方法，有特殊需求的，重写该 类
+ * for DialogFragment 基类 的，封装一些通用的接口和方法
  */
 private const val TAG = "CommonDialogFragment"
 open class BaseDialogFragment : DialogFragment() {
     /**
      * 取消监听
      */
-     private var onDialogCancelListener: (() -> Unit)? = null
+     private var onDialogDismissListener: (() -> Unit)? = null
     /**
      *是否有焦点
      */
@@ -55,6 +55,11 @@ open class BaseDialogFragment : DialogFragment() {
      */
     public var isFullScreen = false
 
+    /**
+     * 是否正在展示
+     */
+    public var isShowing = false
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val window = dialog.window
@@ -81,6 +86,16 @@ open class BaseDialogFragment : DialogFragment() {
         }
     }
 
+    override fun onDismiss(dialog: DialogInterface?) {
+        isShowing = false
+        super.onDismiss(dialog)
+        onDialogDismissListener?.invoke()
+    }
+
+    public fun setOnDialogDismissListener(listener: () -> Unit)  {
+        onDialogDismissListener = listener
+    }
+
 
     /**
      * 请使用该方法显示Dialog
@@ -90,17 +105,10 @@ open class BaseDialogFragment : DialogFragment() {
         if (isAdded) {
             return
         }
+        isShowing = true
         show(fragmentManager, javaClass.simpleName)
         Log.d(TAG, javaClass.simpleName)
     }
 
-    override fun onCancel(dialog: DialogInterface?) {
-        super.onCancel(dialog)
-        onDialogCancelListener?.invoke()
-    }
 
-
-    public fun setOnDialogCancelListener(listener: () -> Unit)  {
-        onDialogCancelListener = listener
-    }
 }

@@ -1,6 +1,7 @@
 package com.lulu.dialogdemo
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,11 +15,13 @@ class MainActivity : FragmentActivity() {
         setContentView(R.layout.activity_main)
         btn.setOnClickListener{
             topDialogFragment.show(supportFragmentManager)
+            Toast.makeText(this, "topDialogFragment.isShowing : " + topDialogFragment.isShowing, Toast.LENGTH_SHORT).show()
             bottomDialogFragment.show(supportFragmentManager)
-            topDialogFragment.setOnDialogCancelListener {
-                if (bottomDialogFragment.isVisible) {
+            topDialogFragment.setOnDialogDismissListener {
+                if (bottomDialogFragment.isShowing) {
                     bottomDialogFragment.dismiss()
                 }
+                Toast.makeText(this, "topDialogFragment.isShowing : " + topDialogFragment.isShowing, Toast.LENGTH_SHORT).show()
             }
         }
     }
