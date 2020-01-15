@@ -18,6 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 class TestBottomSheetDialog: BaseDialogFragment() {
     init {
         gravity = Gravity.BOTTOM
+        isDimBehind = true
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
