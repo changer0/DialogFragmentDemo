@@ -4,9 +4,9 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
+import android.view.Window
 import android.view.WindowManager
 import androidx.annotation.FloatRange
 import androidx.annotation.StyleRes
@@ -15,9 +15,13 @@ import androidx.fragment.app.FragmentManager
 
 /**
  * @author zhanglulu on 2020/1/14.
- * for DialogFragment 基类 的，封装一些通用的接口和方法
+ * for DialogFragment 基类 的，封装一些通用的接口和方法 <br/>
+ * 
+ * DialogFragment 生命周期：
+ * show -> onCreate -> onCreateDialog -> onActivityCreated -> onStart -> 显示 Dialog -> onStop -> onDestroy
  */
 private const val TAG = "BaseDialogFragment"
+
 open class BaseDialogFragment : DialogFragment() {
     /**
      * 取消监听
@@ -60,9 +64,14 @@ open class BaseDialogFragment : DialogFragment() {
      */
     public var isShowing = false
 
+    /**
+     * 当前 Dialog 的 Window
+     */
+    public var window: Window? = null
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val window = dialog.window
+        window = dialog.window
         window?.let {
             it.setGravity(gravity)
             it.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -106,8 +115,7 @@ open class BaseDialogFragment : DialogFragment() {
             return
         }
         isShowing = true
-        show(fragmentManager, javaClass.simpleName)
-        Log.d(TAG, javaClass.simpleName)
+        show(fragmentManager, javaClass.name)
     }
 
 

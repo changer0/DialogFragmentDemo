@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:ns1="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -17,5 +17,14 @@
     <style name="Animation.topbarAnim" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/topbar_enter</item>
         <item name="android:windowExitAnimation">@anim/topbar_out</item>
+    </style>
+
+    <style name="BottomSheetDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/customBottomSheetStyle</item>
+    </style>
+    <style name="customBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_top_corner</item>
+        <item name="behavior_peekHeight">auto</item>
+<!--        <item name="android:elevation" ns1:ignore="NewApi">0dp</item>-->
     </style>
 </resources>

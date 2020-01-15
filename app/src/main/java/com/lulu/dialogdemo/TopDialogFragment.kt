@@ -11,6 +11,7 @@ import android.widget.Toast
  */
 class TopDialogFragment : BaseDialogFragment() {
     private val fullScreenDialog = FullScreenDialog()
+    private val testBottomSheetDialog = TestBottomSheetDialog()
     init {
         gravity = Gravity.TOP
         windowAnimStyleRes = R.style.Animation_topbarAnim
@@ -26,6 +27,12 @@ class TopDialogFragment : BaseDialogFragment() {
         leftBtn.setOnClickListener{
             Toast.makeText(context, "上左按钮点击", Toast.LENGTH_SHORT).show()
             fragmentManager?.let { it1 -> fullScreenDialog.show(it1) }
+        }
+
+        val rightBtn = rootView.findViewById<Button>(R.id.right_btn)
+        rightBtn.setOnClickListener{
+            Toast.makeText(context, "上右按钮点击", Toast.LENGTH_SHORT).show()
+            fragmentManager?.let { it1 -> testBottomSheetDialog.show(it1) }
         }
         return rootView
     }
