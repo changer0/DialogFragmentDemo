@@ -27,6 +27,15 @@ class TestBottomSheetDialog: BaseDialogFragment() {
         dialog.setContentView(R.layout.layout_dialog_bottom_sheet)
         //添加悬浮按钮
         var bottomSheet = dialog.findViewById<FrameLayout>(R.id.container)
+
+
+        bottomSheet?.let {
+            bottomSheet.setPadding(bottomSheet.paddingLeft, bottomSheet.paddingTop+40, bottomSheet.paddingRight,bottomSheet.paddingBottom)
+            //用来控制距离顶部的距离！
+            if (bottomSheet.layoutParams is FrameLayout.LayoutParams) {
+                (bottomSheet.layoutParams as FrameLayout.LayoutParams).topMargin = 500
+            }
+        }
         var floatBtnView = LayoutInflater.from(context).inflate(R.layout.layout_dialog_bottom_float, null)
         bottomSheet?.addView(floatBtnView!!, FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM))
         val closeBt = floatBtnView.findViewById<Button>(R.id.close)
