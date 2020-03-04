@@ -24,7 +24,7 @@
 
     </style>
     <style name="customBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/bg_top_corner</item>
+<!--        <item name="android:background">@drawable/bg_top_corner</item>-->
 <!--        <item name="behavior_peekHeight">auto</item>-->
 <!--        <item name="android:elevation" ns1:ignore="NewApi">0dp</item>-->
 
