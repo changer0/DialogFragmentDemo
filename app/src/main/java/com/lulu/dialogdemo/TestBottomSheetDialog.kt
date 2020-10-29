@@ -30,6 +30,11 @@ class TestBottomSheetDialog: BaseDialogFragment() {
 
     lateinit var viewPager: ViewPager
 
+
+    /**
+     * ###############特别提醒，上下滑动页面需要处理手势冲突############### 参考：BottomSheetDialogListView
+     */
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         //R.style.BottomSheetDialogStyle 指定样式
         val dialog = BottomSheetDialog(context!!, R.style.BottomSheetDialogStyle)
